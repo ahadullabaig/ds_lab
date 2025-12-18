@@ -2,4 +2,4 @@
 *.out
 *.exe
 
-multiple_stacks
+bin/
