@@ -1,5 +1,11 @@
 *.o
 *.out
 *.exe
+*.ilk
+*.obj
+*.pdb
 
 bin/
+
+#VS Code
+.vscode/
