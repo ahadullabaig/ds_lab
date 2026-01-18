@@ -60,3 +60,5 @@ gcc DS_LAB/binary_search_tree.c -o bst
 ## 🛠 Prerequisites
 *   **C Compiler:** GCC (GNU Compiler Collection) or Clang.
 *   **OS:** Windows, Linux, or macOS.
+
+## Credits: Ahad
