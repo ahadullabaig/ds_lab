@@ -31,7 +31,7 @@ Node* insert(Node* root, int data)
     {
         root -> left = insert(root -> left, data);
     }
-    else if(data > root -> data)
+    else
     {
         root -> right = insert(root -> right, data);
     }
@@ -103,37 +103,61 @@ Node* deleteNode(Node* root, int key)
 
         root->right = deleteNode(root->right, temp->data);
     }
+    
     return root;
-}
-
-void inorder(Node* root)
-{
-    if(root == NULL) return;
-
-    inorder(root->left);
-
-    printf("%d ", root->data);
-
-    inorder(root->right);
 }
 
 int main()
 {
     Node* root = NULL;
-    root = insert(root, 50); 
-    insert(root, 30); insert(root, 20); insert(root, 40);
-    insert(root, 70); insert(root, 60); insert(root, 80);
+    
+    int choice = 1;
 
-    printf("Original: ");
-    inorder(root); 
-    printf("\n");
+    while(choice)
+    {
+        printf("\nenter 1 to insert\n");
+        printf("enter 2 to search\n");
+        printf("enter 3 to delete\n");
+        printf("choice: ");
 
-    // Test Deletion
-    root = deleteNode(root, 20); // Delete Leaf
-    root = deleteNode(root, 30); // Delete Node with 1 child
-    root = deleteNode(root, 50); // Delete Root (2 children)
+        scanf("%d", &choice);
 
-    printf("After Deletion: ");
-    inorder(root);
-    printf("\n");
+        switch(choice)
+        {
+            int x;
+            Node* found;
+
+            case 1:
+                printf("\nenter the number to insert: ");
+                scanf("%d", &x);
+                root = insert(root, x);
+                break;
+
+            case 2:
+                printf("\nenter the number to search: ");
+                scanf("%d", &x);
+                found = search(root, x);
+                if(found)
+                    printf("Element %d found in tree.\n", x);
+                else
+                    printf("Element %d not found.\n", x);
+                break;
+
+            case 3:
+                printf("\nenter the number to delete: ");
+                scanf("%d", &x);
+                root = deleteNode(root, x);
+                break;
+
+            default: printf("Wrong Input !\n");
+        }
+
+        printf("\ndo u want to continue?\n");
+        printf("1: yes\n2: no\nchoice: ");
+        scanf("%d", &choice);
+
+        choice = (choice == 1) ? 1 : 0;
+    }
+
+    return 0;
 }
