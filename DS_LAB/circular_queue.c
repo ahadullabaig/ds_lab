@@ -55,10 +55,9 @@ void display()
 
     while(i != rear)
     {
-        printf("%d ", q[i++]);
+        printf("%d ", q[i]);
 
-        if(i == size)
-            i = 0;
+        i = (i+1) % size;
     }
 
     printf("%d\n", q[i]);
@@ -66,13 +65,43 @@ void display()
 
 int main()
 {
-    enqueue(1);
-    enqueue(2);
-    enqueue(3);
+    int choice = 1;
 
-    display();
+    while(choice)
+    {
+        printf("\nenter 1 to enqueue\n");
+        printf("enter 2 to dequeue\n");
+        printf("enter 3 to display\n");
+        printf("choice: ");
 
-    dequeue();
+        scanf("%d", &choice);
 
-    display();
+        switch(choice)
+        {
+            case 1:
+                int x;
+                printf("\nenter the number: ");
+                scanf("%d", &x);
+                enqueue(x);
+                break;
+
+            case 2:
+                dequeue();
+                break;
+
+            case 3:
+                display();
+                break;
+
+            default: printf("Wrong Input !\n");
+        }
+
+        printf("\ndo u want to continue?\n");
+        printf("1: yes\n2: no\nchoice: ");
+        scanf("%d", &choice);
+
+        choice = (choice == 1) ? 1 : 0;
+    }
+
+    return 0;
 }
