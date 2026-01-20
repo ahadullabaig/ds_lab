@@ -82,19 +82,46 @@ int main()
 {
     init();
 
-    // 1. Insertion
-    insert(10); // Hash: 0 -> Index 0
-    insert(20); // Hash: 0 -> Collision -> Index 1
-    insert(30); // Hash: 0 -> Collision -> Index 2
-    insert(4);  // Hash: 4 -> Index 4
-    insert(12); // Hash: 2 -> Collision (30 is there) -> Index 3
+    int choice = 1;
 
-    display();
+    while(choice)
+    {
+        printf("\nenter 1 to insert\n");
+        printf("enter 2 to search\n");
+        printf("enter 3 to display\n");
+        printf("choice: ");
 
-    // 2. Searching
-    search(20); // Should find at index 1
-    search(99); // Should not find
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            int x;
+
+            case 1:
+                printf("\nenter the number: ");
+                scanf("%d", &x);
+                insert(x);
+                break;
+
+            case 2:
+                printf("\nenter the number: ");
+                scanf("%d", &x);
+                search(x);
+                break;
+
+            case 3:
+                display();
+                break;
+
+            default: printf("Wrong Input !\n");
+        }
+
+        printf("\ndo u want to continue?\n");
+        printf("1: yes\n2: no\nchoice: ");
+        scanf("%d", &choice);
+
+        choice = (choice == 1) ? 1 : 0;
+    }
 
     return 0;
 }
-
