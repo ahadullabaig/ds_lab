@@ -14,14 +14,14 @@ void push(int x, int choice)
         if(top1+1 != top2)
             stack[++top1] = x;
         else
-            printf("Stack OverFlow!");
+            printf("\nStack OverFlow!");
     }
     else if(choice == 2)
     {
         if(top1+1 != top2)
             stack[--top2] = x;
         else
-            printf("Stack OverFlow!");
+            printf("\nStack OverFlow!");
     }
 }
 
@@ -32,32 +32,14 @@ void pop(int choice)
         if(top1 != -1)
             top1--;
         else
-            printf("Stack UnderFlow!");
+            printf("\nStack UnderFlow!");
     }
     else if(choice == 2)
     {
         if(top2 != size)
             top2++;
         else
-            printf("Stack UnderFlow!");
-    }
-}
-
-void peek(int choice)
-{
-    if(choice == 1)
-    {
-        if(top1 != -1)
-            printf("Top Element: %d\n", stack[top1]);
-        else
-            printf("Stack Empty!");
-    }
-    else if(choice == 2)
-    {
-        if(top2 != size)
-            printf("Top Element: %d\n", stack[top2]);
-        else
-            printf("Stack Empty!");
+            printf("\nStack UnderFlow!");
     }
 }
 
@@ -70,6 +52,7 @@ void display(int choice)
         {
             printf("%d\n", stack[i]);
         }
+        printf("\n");
     }
     else if(choice == 2)
     {
@@ -78,16 +61,17 @@ void display(int choice)
         {
             printf("%d\n", stack[i]);
         }
+        printf("\n");
     }   
 }
 
 int main()
 {
-    int choice = 0;
+    int choice = 1;
 
-    while(choice == 0)
+    while(choice)
     {
-        printf("enter 1 to use stack 1\n");
+        printf("\nenter 1 to use stack 1\n");
         printf("enter 2 to use stack 2\n");
         printf("enter 3 to exit\n");
         printf("choice: ");
@@ -95,21 +79,20 @@ int main()
 
         if(choice == 3)
         {
-            return 0;
+            break;
         }
 
         if(choice != 1 && choice != 2 && choice != 3)
         {
-            printf("wrong input!\n");
-            choice = 0;
+            printf("\nwrong input!\n");
+            choice = 1;
             continue;
         }
 
         int action;
         printf("\nenter 1 to push\n");
         printf("enter 2 to pop\n");
-        printf("enter 3 to peek\n");
-        printf("enter 4 to display\n");
+        printf("enter 3 to display\n");
         printf("choice: ");
         scanf("%d", &action);
 
@@ -129,17 +112,12 @@ int main()
                 break;
 
             case 3:
-                peek(choice);
                 display(choice);
                 break;
 
-            case 4:
-                display(choice);
-                break;
-
-            default: printf("wrong action input\n");
+            default: printf("\nwrong action input\n");
         }
 
-        choice = 0;
+        choice = 1;
     }
 }
