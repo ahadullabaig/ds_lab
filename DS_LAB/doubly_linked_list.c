@@ -55,40 +55,6 @@ void insEnd(int data)
     node -> prev = temp;
 }
 
-void insKey(int data, int key)
-{
-    if(head == NULL)
-    {
-        printf("List is empty\n");
-        return;
-    }
-
-    if(head -> data == key)
-    {
-        insBeg(data);
-        return;
-    }
-
-    Node* temp = head;
-
-    while(temp -> data != key && temp -> next != NULL)
-        temp = temp -> next;
-
-    if(temp -> data != key)
-    {
-        printf("Key not found!\n");
-        return;
-    }
-
-    Node* node = createNode(data);
-
-    node -> prev = temp -> prev;
-    node -> next = temp;
-
-    temp -> prev -> next = node;
-    temp -> prev = node;
-}
-
 void delBeg()
 {
     if(head == NULL)
@@ -131,39 +97,6 @@ void delEnd()
     free(temp);
 }
 
-void delKey(int key)
-{
-    if(head == NULL)
-    {
-        printf("List is empty\n");
-        return;
-    }
-
-    if(head -> data == key)
-    {
-        delBeg();
-        return;
-    }
-
-    Node* temp = head;
-
-    while(temp -> data != key && temp -> next != NULL)
-        temp = temp -> next;
-
-    if(temp -> data != key)
-    {
-        printf("Key not found!\n");
-        return;
-    }
-
-    temp -> prev -> next = temp -> next;
-
-    if(temp -> next != NULL)
-        temp -> next -> prev = temp -> prev;
-
-    free(temp);
-}
-
 void display()
 {
     if(head == NULL)
@@ -187,21 +120,56 @@ void display()
 
 int main()
 {
-    insBeg(1);
-    insEnd(2);
-    insBeg(0);
+    int choice = 1;
 
-    display();
+    while(choice)
+    {
+        printf("\nenter 1 to insert at beginning\n");
+        printf("enter 2 to insert at end\n");
+        printf("enter 3 to delete at beginning\n");
+        printf("enter 4 to delete at end\n");
+        printf("enter 5 to display\n");
+        printf("choice: ");
 
-    delBeg();
-    
-    display();
+        scanf("%d", &choice);
 
-    insKey(4, 2);
+        switch(choice)
+        {
+            int x;
 
-    display();
+            case 1:
+                printf("\nenter the number: ");
+                scanf("%d", &x);
+                insBeg(x);
+                break;
 
-    delKey(4);
+            case 2:
+                printf("\nenter the number: ");
+                scanf("%d", &x);
+                insEnd(x);
+                break;
 
-    display();
+            case 3:
+                delBeg();
+                break;
+
+            case 4:
+                delEnd();
+                break;
+
+            case 5:
+                display();
+                break;
+
+            default: printf("Wrong Input !\n");
+        }
+
+        printf("\ndo u want to continue?\n");
+        printf("1: yes\n2: no\nchoice: ");
+        scanf("%d", &choice);
+
+        choice = (choice == 1) ? 1 : 0;
+    }
+
+    return 0;
 }
